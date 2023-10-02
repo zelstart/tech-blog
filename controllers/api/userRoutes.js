@@ -1,22 +1,17 @@
 const router = require('express').Router();
 const { User, Post } = require('../../models');
 
-
 // sign up
-router.post('/', async (req, res) => {
-    console.log('POST route hit!');
+router.post('/signup', async (req, res) => {
     try {
         const newUser = await User.create({
             name: req.body.name,
             password: req.body.password
         });
-        
-        console.log(req.body.name, req.body.password);
 
         req.session.save(() => {
             req.session.userId = newUser.id; 
             req.session.name = newUser.name;
-            // immediately log the user in on account creation
             req.session.loggedIn = true;
         });
 
@@ -27,7 +22,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-
 // login
 router.post('/login', async (req, res) => {
     try {
@@ -36,7 +30,7 @@ router.post('/login', async (req, res) => {
                 name: req.body.name,
             },
         });
-        // check validity of user + password combo
+
         if (!user || !user.checkPassword(req.body.password)) {
             return res.status(400).json({ message: 'Invalid login. Please try again.' });
         }
@@ -52,6 +46,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
 // get all users 
 router.get('/', async (req, res) => {
     try {
