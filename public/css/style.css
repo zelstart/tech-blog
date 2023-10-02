@@ -1,0 +1,44 @@
+:root {
+    --bg: #4c4b49;
+    --dark: #282724;
+    --accent2: #208a8a;
+    --light2: #fff;
+    --acc2-25: #025f5f;
+    --shadow: #181818;
+    --shadow2: #90908d;  }
+
+
+    body {
+        background-color: var(--dark);
+    }
+    .navbar-custom, 
+    .blog-title,
+    .cstm
+    {
+        background-color: var(--accent2) !important; 
+    }
+    
+    .cstm-light-text {
+        background-color: var(--accent2) !important; 
+        color: var(--light2) !important; 
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-nav .nav-link {
+        color: var(--light2) !important; 
+    }
+
+    .cstm-btn {
+        color:var(--dark) !important; 
+        background-color: var(--light2) !important; 
+        border-color: var(--light2);
+    }
+
+    .cstm-btn:hover {
+        background: var(--acc2-25) !important; 
+        color: var(--light2) !important; 
+        border-color: var(--acc2-25);
+    }
+
+    .cstm-shadow {
+        box-shadow: 10px 10px 5px var(--shadow);
+    }
