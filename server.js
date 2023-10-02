@@ -4,6 +4,9 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 // const routes = require('./controllers/html');
 // const helpers = require('./utils/auth');
+const htmlRoutes = require('./controllers/html/userRoutes');
+const apiUserRoutes = require('./controllers/api/userRoutes');
+const apiPostRoutes = require('./controllers/api/postRoutes');
 
 
 const sequelize = require('./config/connection');
@@ -36,13 +39,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const htmlRoutes = require('./controllers/html/userRoutes');
-const apiUserRoutes = require('./controllers/api/userRoutes');
-const apiPostRoutes = require('./controllers/api/postRoutes');
-
 app.use('/', htmlRoutes);
 app.use('/api/users', apiUserRoutes);
 app.use('/api/posts', apiPostRoutes);
+
 
 // app.use(routes)
 
