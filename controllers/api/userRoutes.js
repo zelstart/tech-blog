@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Post } = require('../../models');
 
-// sign up
+// sign up (/api/users/signup)
 router.post('/', async (req, res) => {
     try {
         const newUser = await User.create({
@@ -10,13 +10,13 @@ router.post('/', async (req, res) => {
         });
 
         req.session.save(() => {
-            req.session.userId = newUser.id; 
+            req.session.userId = newUser.id;
             req.session.name = newUser.name;
             req.session.loggedIn = true;
         });
 
         res.json(newUser);
-        
+
     } catch (err) {
         res.status(500).json(err);
     }
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
             req.session.name = user.name;
             req.session.loggedIn = true;
 
-            res.json({ user, message: `Welcome back, ${user.name}` }); 
+            res.json({ user, message: `Welcome back, ${user.name}` });
         });
     } catch (err) {
         res.status(500).json(err);

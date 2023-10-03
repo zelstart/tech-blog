@@ -1,3 +1,5 @@
+const router = require('express').Router();
+
 // get post page
 router.get('/newpost', (req, res) => {
     res.render('newpost');
@@ -7,3 +9,5 @@ router.get('/newpost', (req, res) => {
 router.get('/dashboard', (req, res) => {
     res.render('dashboard');
   });
+
+  module.exports = router;

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tech Blog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
+        rel="stylesheet">
+
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom py-4 px-5">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <h1>Tech Blog</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <p>Welcome, {{{user}}}</p>
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<main class="container container-fluid m-5">
+
+  <div class="card p-3 mt-5 cstm-light-text cstm-shadow">
+    <div class="cstm-light-text card-body">
+      <h2 class="cstm-light-text card-title">New Post</h2>
+      <form class="form newpost-form">
+        <div class="form-group p-2">
+          <label for="post-title"><b>Title:</b></label> <br>
+          <input class="form-input" type="text" id="post-title" />
+        </div>
+        <div class="form-group p-2">
+          <label for="post-content"><b>Content:</b></label> <br>
+          <textarea class="form-input" id="post-content" rows="8" cols="150"></textarea>
+        </div>
+        <div class="form-group p-2">
+          <button class="cstm-btn btn btn-primary" type="submit">Create Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <script src="/js/newpost.js"></script>
+  
+
+      <script src="/js/login.js"></script>
+    </main>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
