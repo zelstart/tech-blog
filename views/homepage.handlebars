@@ -1,0 +1,19 @@
+    {{#each posts as |post|}}
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="blog-title text-light p-3">
+                    <h5 class="d-inline">{{{this.title}}}</h5>
+                    <p class="d-inline float-end">Posted By: {{{this.user.name}}} on {{{this.date}}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bg-light p-3">
+                    <p class="mb-0">{{{this.content}}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
