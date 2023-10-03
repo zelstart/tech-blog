@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
     }
 });
 
+
 // get login page
 router.get('/login', async (req, res) => {
     res.render('login')

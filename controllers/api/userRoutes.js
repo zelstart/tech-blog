@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Post } = require('../../models');
 
 // sign up 
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try {
         const newUser = await User.create({
             name: req.body.name,
@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// get all users 
+// get all users (api/users)
 router.get('/', async (req, res) => {
     try {
         const users = await User.findAll();
@@ -57,7 +57,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// get user by ID. include their posts
+// get user by ID. include their posts (api/#)
 router.get('/:id', async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id, {
