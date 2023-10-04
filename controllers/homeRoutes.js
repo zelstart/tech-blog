@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
       const posts = posted.map((post) => post.get({ plain: true }));
         res.render('homepage', {
             posts,
-            logged_in: req.session.logged_in, 
+            loggedIn: req.session.loggedIn, 
            
         });
     } catch (err) {
