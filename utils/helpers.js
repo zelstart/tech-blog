@@ -1,7 +1,7 @@
+function formatDate(dt) {
+    return `${new Date(dt).getMonth() + 1}/${new Date(dt).getDate()}/${new Date(dt).getFullYear()}`
+}
+
 module.exports = {
-    format_date: date => {
-        return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(
-            date
-        ).getFullYear()}`;
-    }
+    formatDate
 }
