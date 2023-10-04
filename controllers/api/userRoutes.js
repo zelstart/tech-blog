@@ -14,7 +14,7 @@ router.post('/signup', async (req, res) => {
             req.session.name = newUser.name;
             req.session.loggedIn = true;
         });
-        console.log(req.session)
+        console.log('AAAAA',req.session)
 
         res.json(newUser);
         
@@ -47,6 +47,7 @@ router.post('/login', async (req, res) => {
         });
     } catch (err) {
         res.status(500).json(err);
+        console.log('NOPE')
     }
 });
 
