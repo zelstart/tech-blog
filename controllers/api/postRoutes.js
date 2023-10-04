@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
 
-// create post
+// create post 
 router.post('/', async (req, res) => {
     try {
         const newPost = await Post.create({
@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// get all posts
+// get all posts (api/posts)
 router.get('/', async (req, res) => {
     try {
         const posts = await Post.findAll();
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// get post by id
+// get post by id (api/posts/#)
 router.get('/:id', async (req, res) => {
     try {
         const post = await Post.findByPk(req.params.id);
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// update
+// update 
 router.put('/:id', async (req, res) => {
     try {
         const updatedPost = await Post.update(

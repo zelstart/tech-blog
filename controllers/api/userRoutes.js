@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Post } = require('../../models');
 
-// sign up 
+// sign up (api/users/signup)
 router.post('/signup', async (req, res) => {
     try {
         const newUser = await User.create({
@@ -14,15 +14,17 @@ router.post('/signup', async (req, res) => {
             req.session.name = newUser.name;
             req.session.loggedIn = true;
         });
+        console.log(req.session)
 
         res.json(newUser);
+        
 
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-// login
+// login (api/users/login)
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({
@@ -30,7 +32,7 @@ router.post('/login', async (req, res) => {
                 name: req.body.name,
             },
         });
-
+// if user doesn't exist or password doesn't match stored password
         if (!user || !user.checkPassword(req.body.password)) {
             return res.status(400).json({ message: 'Invalid login. Please try again.' });
         }
@@ -40,7 +42,8 @@ router.post('/login', async (req, res) => {
             req.session.name = user.name;
             req.session.loggedIn = true;
 
-            res.json({ user, message: `Welcome back, ${user.name}` });
+            res.json({ user });
+
         });
     } catch (err) {
         res.status(500).json(err);
