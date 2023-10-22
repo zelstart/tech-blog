@@ -18,6 +18,50 @@
         background-color: var(--accent2) !important; 
     }
     
+    h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-weight: 700;
+        text-shadow: var(--shadow) 2px 2px 5px;
+        letter-spacing: .030em;
+        background-color: var(--acc2-25);
+        border-radius: 8px;
+        padding: 10px !important;
+        padding-top: 16px !important;
+        box-shadow: 7px 5px var(--shadow);
+        font-size: 4rem;
+        color: var(--light2);
+    }
+    
+    h2 {
+        font-family: 'Bebas Neue', sans-serif;
+        text-shadow: var(--shadow) 2px 2px 5px;
+        font-weight: 400;
+        padding: 15px 0px 0px 0px;
+        color: var(--light2);
+    }
+
+    h6 {
+        font-family: 'Roboto Condensed', sans-serif;
+    }
+    
+a, h6 a {
+    text-decoration: none !important;
+    color: var(--light2) !important;
+
+}
+
+a div div div p {
+    color: var(--dark);
+}
+
+h6 a:hover {
+    color: var(--accent2) !important;
+}
+
+.cstm-dark-text:hover {
+    color: var(--dark) !important;
+}
+
     .cstm-light-text {
         background-color: var(--accent2) !important; 
         color: var(--light2) !important; 
@@ -28,9 +72,9 @@
     }
 
     .cstm-btn {
-        color:var(--dark) !important; 
-        background-color: var(--light2) !important; 
-        border-color: var(--light2);
+        color:var(--light2) !important; 
+        background-color: var(--accent2) !important; 
+        border-color: var(--accent2);
     }
 
     .cstm-btn:hover {
@@ -41,4 +85,8 @@
 
     .cstm-shadow {
         box-shadow: 10px 10px 5px var(--shadow);
+    }
+
+    .lg-card-body {
+        background: var(--light2);
     }
