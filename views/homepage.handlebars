@@ -1,19 +1,27 @@
-    {{#each posts as |post|}}
+{{#each posts as |post|}}
+<a href="/post/{{post.id}}">
     <div class="container my-4">
         <div class="row">
             <div class="col-lg-12">
                 <div class="blog-title text-light p-3 rounded-top">
-                    <h5 class="d-inline">{{{this.title}}}</h5>
-                    <p class="d-inline float-end">Posted By: {{{this.user.name}}} on {{{formatDate createdAt}}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="bg-light p-3 rounded-bottom">
-                    <p class="mb-0">{{{this.content}}}</p>
-                </div>
+                    <h5 class="d-inline">{{{post.title}}}</h5>
+</a>
+<p class="d-inline float-end">
+    Posted By:
+    <a class="cstm-dark-text" href="/dashboard/{{post.user.id}}">{{{post.user.username}}}</a>
+    on {{{post.formatted_date}}}
+</p>
+</div>
+</div>
+</div>
+<a href="/post/{{post.id}}">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="bg-light p-3 rounded-bottom">
+                <p class="mb-0">{{{post.content}}}</p>
             </div>
         </div>
     </div>
-    {{/each}}
+    </div>
+</a>
+{{/each}}

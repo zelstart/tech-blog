@@ -1,20 +1,24 @@
-<div class="card p-3 mt-5 cstm-light-text cstm-shadow">
-  <div class="cstm-light-text card-body">
-    <h2 class="cstm-light-text card-title">New Post</h2>
-    <form class="form newpost-form">
-      <div class="form-group p-2">
-        <label for="post-title">Title:</label>
-        <input class="form-input" type="text" id="post-title" />
-      </div>
-      <div class="form-group p-2">
-        <label for="post-content">Content:</label>
-        <textarea class="form-input" id="post-content" rows="5"></textarea>
-      </div>
-      <div class="form-group p-2">
-        <button class="cstm-btn btn btn-primary" type="submit">Create Post</button>
-      </div>
-    </form>
-  </div>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header cstm-light-text">
+                    <h2 class="card-title mb-0">Create a New Blog Post</h2>
+                </div>
+                <div class="card-body">
+                    <form action="/createpost" method="POST">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter the title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="body" class="form-label">Body</label>
+                            <textarea class="form-control" id="body" name="body" rows="6" placeholder="Write your post"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary cstm-btn">Submit Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script src="/js/newpost.js"></script>
