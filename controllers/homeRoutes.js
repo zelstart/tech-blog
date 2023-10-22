@@ -165,11 +165,19 @@ router.get('/post/:id', withAuth, async (req, res) => {
             return res.status(404).send('Post not found');
         }
 
+        const user = await User.findByPk(post.user_id, {
+            attributes: ['username', 'id']
+        });
+
         res.render('postpage', { 
             post,
+            user,
             loggedIn: req.session.loggedIn, 
             userId: req.session.userId, 
          });
+
+         console.log('User:', user); 
+
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while fetching the post');
