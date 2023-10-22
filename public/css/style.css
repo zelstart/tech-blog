@@ -90,3 +90,11 @@ h6 a:hover {
     .lg-card-body {
         background: var(--light2);
     }
+
+    .teal-link {
+        color: var(--accent2) !important;
+    }
+
+    .black-link {
+        color: var(--shadow) !important;
+    }
