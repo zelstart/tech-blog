@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { User, Post } = require('../models');
+const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
             include: [{ model: User }]
@@ -15,7 +15,7 @@ router.get('/', withAuth, async (req, res) => {
             userId: req.session.userId,
         });
 
-console.log(req.session);
+        console.log(req.session);
 
     } catch (err) {
         console.log(err);
@@ -38,9 +38,9 @@ router.post('/signup', async (req, res) => {
             password,
         });
 
-            req.session.userId = user.id;
-            req.session.username = user.username;
-            req.session.loggedIn = true;
+        req.session.userId = user.id;
+        req.session.username = user.username;
+        req.session.loggedIn = true;
 
         // redirect to homepage
         res.redirect('/');
@@ -65,15 +65,15 @@ router.post('/login', async (req, res) => {
         if (!user || !user.checkPassword(password)) {
             return res.status(401).send('Invalid username or password');
         }
-            req.session.userId = user.id;
-            req.session.username = user.username;
-            req.session.loggedIn = true;
-            
-            console.log('Session saved');
-            // log userId
-            console.log('User ID:', req.session.userId);
-            // log loggedIn status
-            console.log('Logged In:', req.session.loggedIn);
+        req.session.userId = user.id;
+        req.session.username = user.username;
+        req.session.loggedIn = true;
+
+        console.log('Session saved');
+        // log userId
+        console.log('User ID:', req.session.userId);
+        // log loggedIn status
+        console.log('Logged In:', req.session.loggedIn);
 
         console.log('Saved session data:', req.session);
 
@@ -88,20 +88,20 @@ router.post('/login', async (req, res) => {
 // logout
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
-      req.session.destroy(() => {
-        res.status(204).end();
-      })
+        req.session.destroy(() => {
+            res.status(204).end();
+        })
     } else {
-      res.status(404).end();
+        res.status(404).end();
     }
-  });
+});
 
 
 // get dashboard page
 router.get('/dashboard/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
-            where: { user_id: req.params.id }, 
+            where: { user_id: req.params.id },
             include: [{ model: User }]
         });
 
@@ -112,8 +112,8 @@ router.get('/dashboard/:id', withAuth, async (req, res) => {
 
         res.render('dashboard', {
             posts,
-            loggedIn: req.session.loggedIn, 
-            userId: req.session.userId, 
+            loggedIn: req.session.loggedIn,
+            userId: req.session.userId,
             user
         });
     } catch (err) {
@@ -124,10 +124,10 @@ router.get('/dashboard/:id', withAuth, async (req, res) => {
 
 
 // get new post page
-router.get('/newpost', async (req, res) => {
+router.get('/newpost', withAuth, async (req, res) => {
     res.render('newpost', {
-        loggedIn: req.session.loggedIn, 
-        userId: req.session.userId, 
+        loggedIn: req.session.loggedIn,
+        userId: req.session.userId,
     })
 })
 
@@ -142,25 +142,22 @@ router.post('/createpost', withAuth, async (req, res) => {
             user_id: req.session.userId
         });
 
-        res.redirect(`/post/${post.id}`); 
+        res.redirect(`/post/${post.id}`);
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while creating the post');
     }
 });
 
-router.get('/post/:id', withAuth, async (req, res) => {
+// get blog post page
+router.get('/post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
-        const post = await Post.findByPk(postId, {
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'] 
-                }
-            ]
+        const post = await Post.findByPk(req.params.id, {
+            include: [{ model: Comment, include: User }, User]
         });
 
+        console.log(post.comments)
         if (!post) {
             return res.status(404).send('Post not found');
         }
@@ -169,19 +166,46 @@ router.get('/post/:id', withAuth, async (req, res) => {
             attributes: ['username', 'id']
         });
 
-        res.render('postpage', { 
+        res.render('postpage', {
             post,
             user,
-            loggedIn: req.session.loggedIn, 
-            userId: req.session.userId, 
-         });
-
-         console.log('User:', user); 
-
+            loggedIn: req.session.loggedIn,
+            userId: req.session.userId,
+        });
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while fetching the post');
     }
 });
+
+
+// create comment
+router.post('/post/:postId', withAuth, async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const { body } = req.body;
+
+        if (!req.session.loggedIn) {
+            // alert the user that they were logged out due to inactivity
+            return res.status(401).send('You were logged out due to inactivity - please login to continue that activity');
+        }
+
+        const comment = await Comment.create({
+            body,
+            user_id: req.session.userId,
+            post_id: postId,
+        });
+
+        res.status(201).json({ message: 'Comment added successfully', comment });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while adding the comment' });
+    }
+});
+
+
+module.exports = router;
+
+
 
 module.exports = router;

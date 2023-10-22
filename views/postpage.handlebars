@@ -17,10 +17,47 @@
         </div>
     </div>
 </div>
+
 {{#if loggedIn}}
 <!-- COMMENT SECTION -->
-
 <div style="margin-left: 7px; margin-right: 7px;">
+    <div class="container mt-5 p-3 rounded-top cstm-light-text card-border">
+        <div class="row justify-content-center">
+            <div class="col-12 mb-2">
+                <h2 id="comments">Comments</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container lg-card-body rounded-bottom p-5 mb-4">
+        <!-- Add Comments-->
+        <div class="row justify-content-center mb-4">
+            <div class="col-12">
+                <form id="comment-form">
+                    <div class="form-group">
+                        <label for="comment"><h6>Leave a Comment!</h6></label>
+                        <textarea class="form-control mb-1" id="commentBody" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary cstm-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- User Comments -->
+        {{#if post.comments.length}}
+            {{#each post.comments}}
+                <div class="card mb-3">
+                    <a href="/dashboard/{{this.dataValues.user.dataValues.id}}"><div class="card-header cstm-light-text">{{this.dataValues.user.dataValues.username}}</div></a>
+                    <div class="card-body">
+                        <p class="card-text">{{this.dataValues.body}}</p>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <h6>No comments yet.</h6>
+        {{/if}}
+    </div>
+</div>
+{{else}}
 <div class="container mt-5 p-3 rounded-top cstm-light-text card-border">
     <div class="row justify-content-center">
         <div class="col-12 mb-2">
@@ -29,36 +66,25 @@
     </div>
 </div>
 <div class="container lg-card-body rounded-bottom p-5 mb-4">
-    <!-- Add Comments-->
-    <div class="row justify-content-center mb-4">
-        <div class="col-12">
-            <form id="comment-form">
-                <div class="form-group">
-                    <label for="comment"><h6>Leave a Comment!</h6></label>
-                    <textarea class="form-control mb-1" id="commentBody" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary cstm-btn">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- User Comments -->
+    <!-- User Comments (if any) -->
     {{#if post.comments.length}}
         {{#each post.comments}}
             <div class="card mb-3">
-                <a href="/users/{{this.user.id}}"><div class="card-header">{{this.user.username}}</div></a>
+                <a href="/dashboard/{{this.dataValues.user.dataValues.id}}"><div class="card-header cstm-light-text">{{this.dataValues.user.dataValues.username}}</div></a>
                 <div class="card-body">
-                    <p class="card-text">{{this.body}}</p>
+                    <p class="card-text">{{this.dataValues.body}}</p>
                 </div>
             </div>
         {{/each}}
-    {{else}}
-        <h6>No comments yet.</h6>
-    {{/if}}
-</div>
-{{else}}
-
+        {{else}}
+            <h6>No comments yet.</h6>
+        {{/if}}
+        <div class="row justify-content-center mb-4">
+            <div class="col-12">
+                <p>Please <a href="/login" style="color: var(--accent2) !important;">login</a> to post comments.</p>
+            </div>
+        </div>
+    </div>
 {{/if}}
-</div>
 
 <script src="/js/comment.js"></script>
