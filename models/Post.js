@@ -17,7 +17,7 @@ Post.init(
         allowNull: false,
         },
         content: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         },
         user_id: {
@@ -34,7 +34,7 @@ Post.init(
         formatted_date: {
             type: DataTypes.VIRTUAL,
             get() {
-                return format(this.created_at, 'dd/MM/yyyy - HH:mm');
+                return format(this.created_at, 'MM/dd/yyyy - HH:mm');
             }
         }
     },
