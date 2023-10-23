@@ -203,6 +203,59 @@ router.post('/post/:postId', withAuth, async (req, res) => {
     }
 });
 
+// get the page for updating posts
+router.get('/updatepost/:id', withAuth, async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await Post.findByPk(postId);
+
+        console.log(postId, post)
+        if (!post) {
+            return res.status(404).send('Post not found');
+        }
+
+        if (post.user_id !== req.session.userId) {
+            return res.status(403).send('You are not authorized to update this post');
+        }
+
+        res.render('updatepost', {
+            post,
+            loggedIn: req.session.loggedIn,
+            userId: req.session.userId,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while fetching the post');
+    }
+});
+
+// update the post
+router.put('/updatepost/:id', withAuth, async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const { title, body } = req.body;
+
+        const post = await Post.findByPk(postId);
+
+        if (!post) {
+            return res.status(404).send('Post not found');
+        }
+        // user has to be the author of the post to update
+        if (post.user_id !== req.session.userId) {
+            return res.status(403).send('You are not authorized to update this post');
+        }
+
+        await post.update({
+            title,
+            content: body,
+        });
+
+        res.sendStatus(200);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while updating the post');
+    }
+});
 
 
 // delete post
@@ -214,7 +267,7 @@ router.delete('/deletepost/:id', withAuth, async (req, res) => {
         if (!post) {
             return res.status(404).send('Post not found');
         }
-
+        // user has to be the author of the post to delete
         if (post.user_id !== req.session.userId) {
             return res.status(403).send('You are not authorized to delete this post');
         }
