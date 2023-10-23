@@ -5,7 +5,7 @@
                 <h5 class="d-inline">{{post.dataValues.title}}</h5>
                 <p class="d-inline float-end">
                     Posted By:
-                    <a class="cstm-dark-text" href="/dashboard/{{user.dataValues.id}}">
+                    <a class="cstm-dark-text" href="/profile/{{user.dataValues.id}}">
                         {{user.dataValues.username}}
                     </a>
                     on {{formatDate post.dataValues.created_at}}
@@ -46,7 +46,7 @@
         {{#if post.comments.length}}
             {{#each post.comments}}
                 <div class="card mb-3">
-                    <a href="/dashboard/{{this.dataValues.user.dataValues.id}}"><div class="card-header cstm-light-text">{{this.dataValues.user.dataValues.username}}</div></a>
+                    <a href="/profile/{{this.dataValues.user.dataValues.id}}"><div class="card-header cstm-light-text">{{this.dataValues.user.dataValues.username}}</div></a>
                     <div class="card-body">
                         <p class="card-text">{{this.dataValues.body}}</p>
                     </div>
@@ -70,7 +70,7 @@
     {{#if post.comments.length}}
         {{#each post.comments}}
             <div class="card mb-3">
-                <a href="/dashboard/{{this.dataValues.user.dataValues.id}}"><div class="card-header cstm-light-text">{{this.dataValues.user.dataValues.username}}</div></a>
+                <a href="/profile/{{this.dataValues.user.dataValues.id}}"><div class="card-header cstm-light-text">{{this.dataValues.user.dataValues.username}}</div></a>
                 <div class="card-body">
                     <p class="card-text">{{this.dataValues.body}}</p>
                 </div>
