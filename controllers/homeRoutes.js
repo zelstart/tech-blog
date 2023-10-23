@@ -98,10 +98,10 @@ router.post('/logout', (req, res) => {
 
 
 // get dashboard page
-router.get('/dashboard/:id', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
-            where: { user_id: req.params.id },
+            where: { user_id: req.session.userId },
             include: [{ model: User }]
         });
 
@@ -204,8 +204,30 @@ router.post('/post/:postId', withAuth, async (req, res) => {
 });
 
 
+
+// delete post
+router.delete('/deletepost/:id', withAuth, async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await Post.findByPk(postId);
+
+        if (!post) {
+            return res.status(404).send('Post not found');
+        }
+
+        if (post.user_id !== req.session.userId) {
+            return res.status(403).send('You are not authorized to delete this post');
+        }
+
+        await post.destroy();
+        res.status(200).send('Post deleted successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while deleting the post');
+    }
+});
+
+
 module.exports = router;
 
 
-
-module.exports = router;
