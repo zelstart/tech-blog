@@ -6,8 +6,7 @@
                     <h5 class="card-title">{{post.dataValues.title}}</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{post.dataValues.content}}</p>
-
+                    <p class="card-text blog-content">{{post.dataValues.content}}</p>
                     <p class="card-text"><small class="text-muted">
                         Posted By:
                         <a class="black-link" href="/profile/{{user.dataValues.id}}">
@@ -21,74 +20,79 @@
     </div>
 </div>
 
-
 {{#if loggedIn}}
 <!-- COMMENT SECTION -->
-<div style="margin-left: 7px; margin-right: 7px;">
-    <div class="container mt-5 p-2 pt-3 rounded-top cstm-light-text card-border">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <h2 id="comments">Comments</h2>
-            </div>
-        </div>
-    </div>
-    <div class="container lg-card-body rounded-bottom p-5 mb-4">
-        <!-- Add Comments-->
-        <div class="row justify-content-center mb-4">
-            <div class="col-12">
-                <form id="comment-form">
-                    <div class="form-group">
-                        <label for="comment"><h6>Leave a Comment!</h6></label>
-                        <textarea class="form-control mb-1" id="commentBody" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary cstm-btn">Submit</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- User Comments -->
-        {{#if post.comments.length}}
-            {{#each post.comments}}
-                <div class="card mb-3">
-                    <a href="/profile/{{this.dataValues.user.dataValues.id}}"><div class="card-header cstm-light-text">{{this.dataValues.user.dataValues.username}}</div></a>
-                    <div class="card-body">
-                        <p class="card-text">{{this.dataValues.body}}</p>
-                    </div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card bg-light">
+                <div class="card-header comment-card-title">
+                    <h2 id="comments" class="mb-0">Comments</h2>
                 </div>
-            {{/each}}
-        {{else}}
-            <h6>No comments yet.</h6>
-        {{/if}}
+                <div class="card-body p-5">
+                    <!-- Add Comments-->
+                    <form id="comment-form">
+                        <div class="form-group">
+                            <label for="comment"><h6>Leave a Comment!</h6></label>
+                            <textarea class="form-control mb-1" id="commentBody" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary cstm-btn mb-1">Submit</button>
+                    </form>
+
+                    <!-- User Comments -->
+                    {{#if post.comments.length}}
+                        {{#each post.comments}}
+                            <div class="card mb-3">
+                                <a href="/profile/{{this.dataValues.user.dataValues.id}}">
+                                    <div class="card-header comment-card-title text-light bg-dark">{{this.dataValues.user.dataValues.username}}</div>
+                                </a>
+                                <div class="card-body">
+                                    <p class="card-text">{{this.dataValues.body}}</p>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <h6>No comments yet.</h6>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {{else}}
-<div class="container mt-5 p-3 rounded-top cstm-light-text card-border">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-12 mb-2">
-            <h2 id="comments">Comments</h2>
+        <div class="col-lg-12">
+            <div class="card bg-light">
+                <div class="card-header">
+                    <h2 id="comments" class="mb-0">Comments</h2>
+                </div>
+                <div class="card-body p-5">
+                    <!-- User Comments (if any) -->
+                    {{#if post.comments.length}}
+                        {{#each post.comments}}
+                            <div class="card mb-3">
+                                <a href="/profile/{{this.dataValues.user.dataValues.id}}">
+                                    <div class="card-header text-light bg-dark">{{this.dataValues.user.dataValues.username}}</div>
+                                </a>
+                                <div class="card-body">
+                                    <p class="card-text">{{this.dataValues.body}}</p>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <h6>No comments yet.</h6>
+                    {{/if}}
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-12">
+                            <p>Please <a href="/login" class="teal-link">login</a> to post comments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="container lg-card-body rounded-bottom p-5 mb-4">
-    <!-- User Comments (if any) -->
-    {{#if post.comments.length}}
-        {{#each post.comments}}
-            <div class="card mb-3">
-                <a href="/profile/{{this.dataValues.user.dataValues.id}}"><div class="card-header cstm-light-text">{{this.dataValues.user.dataValues.username}}</div></a>
-                <div class="card-body">
-                    <p class="card-text">{{this.dataValues.body}}</p>
-                </div>
-            </div>
-        {{/each}}
-        {{else}}
-            <h6>No comments yet.</h6>
-        {{/if}}
-        <div class="row justify-content-center mb-4">
-            <div class="col-12">
-                <p>Please <a href="/login" class="teal-link">login</a> to post comments.</p>
-            </div>
-        </div>
-    </div>
 {{/if}}
 
 <script src="/js/comment.js"></script>
