@@ -40,6 +40,13 @@
         color: var(--light2);
     }
 
+    h3 {
+        font-family: 'Bebas Neue', sans-serif;
+        text-shadow: var(--shadow) 2px 2px 5px;
+        font-weight: 400;
+        color: var(--light2);
+    }
+
     h6 {
         font-family: 'Roboto Condensed', sans-serif;
     }
@@ -92,7 +99,8 @@ h6 a:hover {
     }
 
     .teal-link,
-    .black-link:hover {
+    .black-link:hover,
+    .white-link-a:hover {
         color: var(--accent2) !important;
     }
 
@@ -102,6 +110,7 @@ h6 a:hover {
     }
 
     .white-link,
+    .white-link-a
     .light-text {
         color: var(--light2) !important;
     }

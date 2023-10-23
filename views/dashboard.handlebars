@@ -1,7 +1,7 @@
-<div class="container mt-5">
+{{!-- <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
-            <h6><a href="/createpost">create a new blog post ></a></h6>
+            <h6><a href="/newpost">create a new blog post ></a></h6>
             <h2>Your Blog Posts</h2>
             {{#each posts}}
             <div class="card mb-3">
@@ -15,6 +15,33 @@
                 </div>
             </div>
             {{/each}}
+        </div>
+    </div>
+</div>
+ --}}
+
+ <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            {{#if posts.length}}
+                <h6><a href="/newpost">create a new blog post ></a></h6>
+                <h2>Your Blog Posts</h2>
+                {{#each posts}}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="/post/{{id}}" class="black-link">{{title}}</a></h5>
+                            <p class="card-text">{{content}}</p>
+                            <p class="card-text"><small class="text-muted">{{formatted_date}}</small></p>
+                            <a href="/updatepost/{{id}}" class="btn btn-primary">Update</a>
+                            <button class="btn btn-danger delete-post" data-id="{{id}}" data-bs-toggle="modal"
+                                data-bs-target="#deleteConfirmationModal">Delete</button>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+                <h3>You have not created any blog posts yet!</h3> 
+                <p><a class="white-link-a" href="/newpost">create a new blog post here ></a></p>
+            {{/if}}
         </div>
     </div>
 </div>
