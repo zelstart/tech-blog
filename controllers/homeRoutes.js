@@ -280,6 +280,36 @@ router.delete('/deletepost/:id', withAuth, async (req, res) => {
     }
 });
 
+// Add this route to your Express application
+router.get('/profile/:id', async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const user = await User.findByPk(userId);
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        const postData = await Post.findAll({
+            where: { user_id: userId },
+            include: [{ model: User }]
+        });
+
+        const posts = postData.map((post) => post.get({ plain: true }));
+
+        res.render('profile', {
+            user,
+            posts,
+            loggedIn: req.session.loggedIn,
+            userId: req.session.userId,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while fetching the profile');
+    }
+});
+
+
 
 module.exports = router;
 
