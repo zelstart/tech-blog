@@ -91,10 +91,15 @@ h6 a:hover {
         background: var(--light2);
     }
 
-    .teal-link {
+    .teal-link,
+    .black-link:hover {
         color: var(--accent2) !important;
     }
 
     .black-link {
         color: var(--shadow) !important;
+    }
+
+    .white-link {
+        color: var(--light2) !important;
     }
