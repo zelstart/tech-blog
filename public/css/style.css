@@ -13,6 +13,7 @@
     }
     .navbar-custom, 
     .blog-title,
+    .comment-card-title,
     .cstm
     {
         background-color: var(--accent2) !important; 
@@ -118,6 +119,10 @@ h6 a:hover {
     .card {
         border-color: var(--accent2) !important;
     }
+
+    .blog-content {
+        white-space: pre-line;
+      }
 
     @media (max-width: 376px) {
         .home-post-info {
