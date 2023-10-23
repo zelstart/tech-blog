@@ -34,7 +34,7 @@ Post.init(
         formatted_date: {
             type: DataTypes.VIRTUAL,
             get() {
-                return format(this.created_at, 'MM/dd/yyyy - HH:mm');
+                return format(this.created_at, 'MM/dd/yyyy - hh:mm a');
             }
         }
     },
