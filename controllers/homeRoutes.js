@@ -157,7 +157,6 @@ router.get('/post/:id', async (req, res) => {
             include: [{ model: Comment, include: User }, User]
         });
 
-        console.log(post.comments)
         if (!post) {
             return res.status(404).send('Post not found');
         }
