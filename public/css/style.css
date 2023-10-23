@@ -96,10 +96,27 @@ h6 a:hover {
         color: var(--accent2) !important;
     }
 
-    .black-link {
+    .black-link,
+    .white-link:hover {
         color: var(--shadow) !important;
     }
 
-    .white-link {
+    .white-link,
+    .light-text {
         color: var(--light2) !important;
     }
+
+    .card {
+        border-color: var(--accent2) !important;
+    }
+
+    @media (max-width: 376px) {
+        .home-post-info {
+            font-size: .75rem;
+        }
+        
+        .home-post-title {
+            font-size: 1rem;
+        }
+    }
+    

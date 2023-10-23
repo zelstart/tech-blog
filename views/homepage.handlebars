@@ -1,27 +1,13 @@
 {{#each posts as |post|}}
-<a href="/post/{{post.id}}">
-    <div class="container my-4">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="blog-title text-light p-3 rounded-top">
-                    <h5 class="d-inline">{{{post.title}}}</h5>
-</a>
-<p class="d-inline float-end"><small>
-    Posted By:
-    <a class="cstm-dark-text white-link" href="/profile/{{post.user.id}}">{{{post.user.username}}}</a>
-    on {{{post.formatted_date}}}
-</small></p>
-</div>
-</div>
-</div>
-<a href="/post/{{post.id}}">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="bg-light p-3 rounded-bottom">
-                <p class="mb-0">{{{post.content}}}</p>
+    <a href="/post/{{post.id}}" class="text-decoration-none">
+        <div class="card my-4">
+            <div class="card-header blog-title">
+                <h5 class="card-title mb-0">{{{post.title}}}</h5>
+                <small class="light-text">Posted By: <a class="white-link" href="/profile/{{post.user.id}}">{{{post.user.username}}}</a> on {{{post.formatted_date}}}</small>
+            </div>
+            <div class="card-body">
+                <p class="card-text mb-0">{{{post.content}}}</p>
             </div>
         </div>
-    </div>
-    </div>
-</a>
+    </a>
 {{/each}}
