@@ -121,7 +121,7 @@ router.get('/newpost', withAuth, async (req, res) => {
 })
 
 // create new post
-router.post('/createpost', withAuth, async (req, res) => {
+router.post('/newpost', withAuth, async (req, res) => {
     const { title, body } = req.body;
 
     try {
@@ -131,7 +131,7 @@ router.post('/createpost', withAuth, async (req, res) => {
             user_id: req.session.userId
         });
 
-        res.redirect(`/post/${post.id}`);
+        res.redirect(`/dashboard`);
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while creating the post');
