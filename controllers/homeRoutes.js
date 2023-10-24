@@ -15,8 +15,6 @@ router.get('/', async (req, res) => {
             userId: req.session.userId,
         });
 
-        console.log(req.session);
-
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -69,14 +67,6 @@ router.post('/login', async (req, res) => {
         req.session.username = user.username;
         req.session.loggedIn = true;
 
-        console.log('Session saved');
-        // log userId
-        console.log('User ID:', req.session.userId);
-        // log loggedIn status
-        console.log('Logged In:', req.session.loggedIn);
-
-        console.log('Saved session data:', req.session);
-
         // redirect to homepage
         res.redirect('/');
     } catch (error) {
@@ -96,7 +86,6 @@ router.post('/logout', (req, res) => {
     }
 });
 
-
 // get dashboard page
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
@@ -108,7 +97,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
         const posts = postData.map((post) => post.get({ plain: true }));
 
         const user = await User.findByPk(req.params.id);
-        console.log(user); // Check if this prints the user object
 
         res.render('dashboard', {
             posts,
@@ -157,7 +145,6 @@ router.get('/post/:id', async (req, res) => {
             include: [{ model: Comment, include: User }, User]
         });
 
-        console.log(post.comments)
         if (!post) {
             return res.status(404).send('Post not found');
         }
@@ -172,6 +159,8 @@ router.get('/post/:id', async (req, res) => {
             loggedIn: req.session.loggedIn,
             userId: req.session.userId,
         });
+
+
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while fetching the post');
