@@ -1,24 +1,35 @@
 const newPostFormHandler = async (event) => {
-    event.preventDefault();
-  
-    const title = document.querySelector('#post-title').value.trim();
-    const content = document.querySelector('#post-content').value.trim();
-  
-    if (title && content) {
-      const response = await fetch('/posts', {
-        method: 'POST',
-        body: JSON.stringify({ title, content }),
-        headers: { 'Content-Type': 'application/json' },
+  event.preventDefault();
+
+  const titleElement = document.querySelector('#post-title');
+  const contentElement = document.querySelector('#post-content');
+
+  const title = titleElement.value.trim();
+  const content = contentElement.value.trim();
+
+  if (!title || !content) {
+      alert('You need to enter a title and body for your post!');
+      return;
+  }
+
+  try {
+      const response = await fetch('/newpost', {
+          method: 'POST',
+          body: JSON.stringify({ title, body: content }),
+          headers: { 'Content-Type': 'application/json' },
       });
-  
+
       if (response.ok) {
-        document.location.replace('/');
+          console.log('Post created.')
       } else {
-        alert('Failed to create post');
+          throw new Error('Failed to create post');
       }
-    }
-  };
-  
-  document
-    .querySelector('.newpost-form')
-    .addEventListener('submit', newPostFormHandler);
+  } catch (error) {
+      console.error(error);
+      alert('An error occurred while creating the post');
+  }
+};
+
+document
+  .querySelector('.newpost-form')
+  .addEventListener('submit', newPostFormHandler);

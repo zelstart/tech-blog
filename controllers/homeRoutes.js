@@ -122,13 +122,14 @@ router.get('/newpost', withAuth, async (req, res) => {
 
 // create new post
 router.post('/newpost', withAuth, async (req, res) => {
-    const { title, body } = req.body;
-
     try {
+        const { title, body } = req.body;
+        const userId = req.session.userId;
+
         const post = await Post.create({
             title,
             content: body,
-            user_id: req.session.userId
+            user_id: userId
         });
 
         res.redirect(`/dashboard`);
@@ -137,6 +138,7 @@ router.post('/newpost', withAuth, async (req, res) => {
         res.status(500).send('An error occurred while creating the post');
     }
 });
+
 
 // get blog post page
 router.get('/post/:id', async (req, res) => {
@@ -154,19 +156,22 @@ router.get('/post/:id', async (req, res) => {
             attributes: ['username', 'id']
         });
 
+        const plainPost = post.get({ plain: true }); // Get plain JavaScript object for the post
+        console.log(plainPost)
         res.render('postpage', {
-            post,
+            post: plainPost, 
             user,
             loggedIn: req.session.loggedIn,
             userId: req.session.userId,
+            
         });
-
 
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while fetching the post');
     }
 });
+
 
 
 // create comment

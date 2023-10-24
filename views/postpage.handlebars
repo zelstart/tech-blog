@@ -3,14 +3,14 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">{{post.dataValues.title}}</h5>
+                    <h5 class="card-title">{{post.title}}</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text blog-content">{{post.dataValues.content}}</p>
-                    <p class="card-text"><small class="text-muted">
+                    <p class="card-text blog-content">{{post.content}}</p>
+                    <p class="card-text"><small>
                         Posted by 
-                        <a class="black-link" href="/profile/{{user.dataValues.id}}">
-                            {{user.dataValues.username}}
+                        <a class="black-link" href="/profile/{{user.id}}">
+                            {{user.username}} on {{post.formatted_date}}
                         </a>
                     </small></p>
                 </div>
@@ -42,11 +42,11 @@
                     {{#if post.comments.length}}
                         {{#each post.comments}}
                             <div class="card mb-3">
-                                <a href="/profile/{{this.dataValues.user.dataValues.id}}">
-                                    <div class="card-header comment-card-title text-light bg-dark">{{this.dataValues.user.dataValues.username}}</div>
+                                <a href="/profile/{{this.user.id}}">
+                                    <div class="card-header comment-card-title text-light bg-dark">{{this.user.username}}</div>
                                 </a>
                                 <div class="card-body">
-                                    <p class="card-text">{{this.dataValues.body}}</p>
+                                    <p class="card-text">{{this.body}}</p>
                                 </div>
                             </div>
                         {{/each}}
@@ -71,11 +71,11 @@
                     {{#if post.comments.length}}
                         {{#each post.comments}}
                             <div class="card mb-3">
-                                <a href="/profile/{{this.dataValues.user.dataValues.id}}">
-                                    <div class="card-header text-light bg-dark comment-card-title">{{this.dataValues.user.dataValues.username}}</div>
+                                <a href="/profile/{{this.user.id}}">
+                                    <div class="card-header text-light bg-dark comment-card-title">{{this.user.username}}</div>
                                 </a>
                                 <div class="card-body">
-                                    <p class="card-text">{{this.dataValues.body}}</p>
+                                    <p class="card-text">{{this.body}}</p>
                                 </div>
                             </div>
                         {{/each}}
