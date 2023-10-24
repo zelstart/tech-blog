@@ -156,8 +156,7 @@ router.get('/post/:id', async (req, res) => {
             attributes: ['username', 'id']
         });
 
-        const plainPost = post.get({ plain: true }); // Get plain JavaScript object for the post
-        console.log(plainPost)
+        const plainPost = post.get({ plain: true }); // get plain JavaScript object for the post
         res.render('postpage', {
             post: plainPost, 
             user,
