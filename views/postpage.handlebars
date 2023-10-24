@@ -63,7 +63,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card bg-light">
-                <div class="card-header">
+                <div class="card-header comment-card-title">
                     <h2 id="comments" class="mb-0">Comments</h2>
                 </div>
                 <div class="card-body p-5">
@@ -72,7 +72,7 @@
                         {{#each post.comments}}
                             <div class="card mb-3">
                                 <a href="/profile/{{this.dataValues.user.dataValues.id}}">
-                                    <div class="card-header text-light bg-dark">{{this.dataValues.user.dataValues.username}}</div>
+                                    <div class="card-header text-light bg-dark comment-card-title">{{this.dataValues.user.dataValues.username}}</div>
                                 </a>
                                 <div class="card-body">
                                     <p class="card-text">{{this.dataValues.body}}</p>
