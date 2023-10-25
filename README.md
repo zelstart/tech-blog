@@ -1,5 +1,4 @@
 # Tech Blog
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Table Of Contents
@@ -12,8 +11,7 @@
 - [Deployed Site](#deployed-site)
 
 ## Description
-
-This Tech Blog is a place where users can create an account and connect with other developers. It's a simple site that allows you to create blog posts and comment on others' posts. It's a place for developers to publish articles, blog posts, and express their thoughts and opinions
+This Tech Blog is a place where users can create an account and connect with other developers. It's a simple site that allows you to create blog posts and comment on others' posts. It's a place for developers to publish articles, blog posts, and express their thoughts and opinions about the latest news in tech. 
 
 ## Installation
 If you would like to run the application locally:
@@ -29,7 +27,10 @@ If you would like to run the application locally:
 9. You can now go to `https://localhost:3001/` and use the application.
 
 ## Usage
-If the demo video link is unavailable, you can find the video in `public/assets/demo-video`
+[Demo Video](https://watch.screencastify.com/v/w0DYx4uf508IbTTBPuLM)  
+If the demo video link is unavailable, you can find the video in `public/assets/demo-video`.
+
+The video demonstrates the functionality of the site, including signup, login, creating, updating and deleting a post, leaving a comment, viewing a profile, viewing your dashboard, and logging out.
 
 
 ## Dependencies
