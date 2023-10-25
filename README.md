@@ -16,7 +16,6 @@
 This Tech Blog is a place where users can create an account and connect with other developers. It's a simple site that allows you to create blog posts and comment on others' posts. It's a place for developers to publish articles, blog posts, and express their thoughts and opinions
 
 ## Installation
-
 If you would like to run the application locally:
 
 1. Download the repo and open it in your favorite IDE.
@@ -51,5 +50,4 @@ npm:
 MIT
 
 ## Deployed Site
-
-<!-- Add a link to the deployed site if applicable. -->
+https://zelstart-tech-blog-7449797524ee.herokuapp.com/
